@@ -1,5 +1,7 @@
+.*
+!.gitignore
 node_modules
 /build/*
-.idea
+!/build/.build
 package-lock.json
 *.js
