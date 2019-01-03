@@ -2,15 +2,19 @@ import {User} from '../models/User';
 import {Auth} from "../../../main/auth/Auth";
 import {UserInterface} from "../interfaces/UserInterface";
 import {AuthInterface} from "../../../main/auth/AuthInterface";
+import {UserViewInterface} from "../interfaces/UserViewInterface";
 
 export function index(req: any, res: any) {
 
     let user = new User();
 
-    user.getAll(function(person: any){
-        console.log(person);
+    user.getAll(function(person: UserViewInterface[]){
+        if(Boolean(person)){
+            res.status(200).json({person});
+        } else {
+            res.status(204).send(null);
+        }
     });
-    res.status(200).json({test: 'hola'});
 }
 
 export function login(req: any, res: any){
@@ -30,8 +34,4 @@ export function login(req: any, res: any){
             res.status(401).json({message: 'Credenciales invalidas'});
         }
     });
-}
-
-export function access(req: any, res: any) {
-    res.status(200).json({});
 }

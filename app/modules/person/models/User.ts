@@ -13,7 +13,7 @@ export class User extends Model{
     }
 
     getAll(callback: any){
-        this.person.fetch().then(function(person: any){
+        this.person.fetchAll({columns: ['id', 'email', 'name', 'lastname', 'active']}).then(function(person: any){
             if(Boolean(person)){
                 callback(person.toJSON());
             } else {
@@ -26,7 +26,7 @@ export class User extends Model{
     }
 
     get(properties: AuthInterface, callback: any){
-        this.person.where({'email': properties.email, 'password': properties.password}).fetch().then(function(person: any){
+        this.person.where({'email': properties.email, 'password': properties.password, 'active': true}).fetch().then(function(person: any){
             if(Boolean(person)){
                 callback(person.toJSON());
             } else {
