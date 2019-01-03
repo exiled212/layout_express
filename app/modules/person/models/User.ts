@@ -14,17 +14,27 @@ export class User extends Model{
 
     getAll(callback: any){
         this.person.fetch().then(function(person: any){
-            callback(person.toJSON());
+            if(Boolean(person)){
+                callback(person.toJSON());
+            } else {
+                callback(null);
+            }
         }).catch(function(err: any){
             console.log(err);
+            callback(null);
         })
     }
 
     get(properties: AuthInterface, callback: any){
         this.person.where({'email': properties.email, 'password': properties.password}).fetch().then(function(person: any){
-            callback(person.toJSON());
+            if(Boolean(person)){
+                callback(person.toJSON());
+            } else {
+                callback(null);
+            }
         }).catch(function(err: any){
             console.log(err);
+            callback(null);
         })
     }
 
