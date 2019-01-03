@@ -1,4 +1,5 @@
 import { Model } from "../../../main/Model";
+import {AuthInterface} from "../../../main/auth/AuthInterface";
 
 export class User extends Model{
 
@@ -7,12 +8,20 @@ export class User extends Model{
     constructor() {
         super();
         this.person = this.getBookshelf().Model.extend({
-            tableName: 'person'
+            tableName: 'user'
         });
     }
 
     getAll(callback: any){
-        this.person.where('id', 1).fetch().then(function(person: any){
+        this.person.fetch().then(function(person: any){
+            callback(person.toJSON());
+        }).catch(function(err: any){
+            console.log(err);
+        })
+    }
+
+    get(properties: AuthInterface, callback: any){
+        this.person.where({'email': properties.email, 'password': properties.password}).fetch().then(function(person: any){
             callback(person.toJSON());
         }).catch(function(err: any){
             console.log(err);
