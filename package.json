@@ -2,8 +2,9 @@
   "name": "layout_backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "build/bin/www.js",
   "scripts": {
+    "start": "node build/bin/www.js",
     "tsc": "tsc"
   },
   "keywords": [],

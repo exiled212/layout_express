@@ -2,7 +2,7 @@ import { app } from '../main';
 import { createServer } from 'http';
 
 
-import Debug from "Debug";
+import Debug from "debug";
 
 const debug: Debug.IDebugger = Debug('layout-backend:server');
 
