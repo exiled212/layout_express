@@ -10,6 +10,13 @@ export class Config {
         app.use(express.json());
         app.use(express.urlencoded({ extended: false }));
 
+        app.all('/*', function(req: any, res: any, next: any) {
+            res.header('Access-Control-Allow-Origin', "*");
+            res.header('Access-Control-Allow-Headers', 'Content-Type');
+            res.header('Access-Control-Allow-Credential', 'true');
+            next();
+        });
+
         app.use(routes);
 
         // catch 404 and forward to error handler
