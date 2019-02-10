@@ -8,7 +8,7 @@ export class User extends Model{
     constructor() {
         super();
         this.person = this.getBookshelf().Model.extend({
-            tableName: 'user'
+            tableName: 'users'
         });
     }
 
@@ -36,6 +36,15 @@ export class User extends Model{
             console.log(err);
             callback(null);
         })
+    }
+
+    createUser(data: any, callback: any){
+        try {
+            new this.person(data).save();
+            callback(data);
+        } catch (e) {
+            callback(null);
+        }
     }
 
 }

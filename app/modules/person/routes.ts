@@ -1,7 +1,9 @@
-import { index, login } from './controllers/MainController';
-import {isAuth} from "../../main/middlewares/authMiddleware";
+import { getAllUser, createUser } from './controllers/MainController';
 
 export function set(router: any){
-    router.get('/person', isAuth, index);
-    router.post('/login', login);
+
+    router.get('/person', getAllUser);
+
+    router.post('/person', createUser);
+
 }

@@ -17,7 +17,7 @@ export function index(req: any, res: any) {
     });
 }
 
-export function login(req: any, res: any){
+export function login(req: any, res: any): void{
     let model = new User();
     let auth = new Auth();
 
@@ -34,4 +34,24 @@ export function login(req: any, res: any){
             res.status(401).json({message: 'Credenciales invalidas'});
         }
     });
+}
+
+
+export function getAllUser(req: any, res: any): void{
+
+    let user: User = new User();
+
+    user.getAll(function(person: any){
+        res.status(200).json(person);
+    });
+}
+
+export function createUser(req: any, res: any): void{
+
+    let user: User = new User();
+
+    user.createUser(req.body, ( person: any ) => {
+        res.status(200).json(person);
+    })
+
 }
